@@ -1,8 +1,7 @@
-package Source.MVC.Model.Aluno;
+package MVC.Model.Aluno;
 
 import java.util.ArrayList;
-
-import Source.MVC.Model.Disciplina.DisciplinaCursada;
+import MVC.Model.Disciplina.DisciplinaCursada;
 
 public class Aluno
 {

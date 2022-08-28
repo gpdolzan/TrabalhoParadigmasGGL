@@ -1,4 +1,4 @@
-package Source.MVC.Model.Disciplina;
+package MVC.Model.Disciplina;
 
 public class Disciplina
 {
@@ -58,5 +58,4 @@ public class Disciplina
         System.out.println("chTotal = " + chTotal);
         System.out.println("descSituacao = " + descSituacao);
     }
-
 }

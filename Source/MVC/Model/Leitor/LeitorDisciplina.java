@@ -1,11 +1,10 @@
-package Source.MVC.Model.Leitor;
+package MVC.Model.Leitor;
 
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import Source.MVC.Model.Disciplina.Disciplina;
+import MVC.Model.Disciplina.Disciplina;
 
 public class LeitorDisciplina
 {

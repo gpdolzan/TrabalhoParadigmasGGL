@@ -1,12 +1,12 @@
-package Source.MVC.Model.Leitor;
+package MVC.Model.Leitor;
 
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Source.MVC.Model.Aluno.Aluno;
-import Source.MVC.Model.Disciplina.DisciplinaCursada;
+import MVC.Model.Aluno.Aluno;
+import MVC.Model.Disciplina.DisciplinaCursada;
 
 public class LeitorAluno
 {   
@@ -15,7 +15,7 @@ public class LeitorAluno
     {
         Aluno aluno = new Aluno();
         ArrayList<DisciplinaCursada> listCursadas = new ArrayList<DisciplinaCursada>();
-        File arqAluno = new File(nomeArq);
+        File arqAluno = new File("Inputs/exemplo_trabalho_TAP_historico.csv");
 
         try
         {

@@ -1,4 +1,4 @@
-package Source.MVC.Model.Disciplina;
+package MVC.Model.Disciplina;
 
 public class DisciplinaCursada
 {
