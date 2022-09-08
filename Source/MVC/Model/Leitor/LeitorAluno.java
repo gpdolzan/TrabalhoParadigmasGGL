@@ -15,7 +15,7 @@ public class LeitorAluno
     {
         Aluno aluno = new Aluno();
         ArrayList<DisciplinaCursada> listCursadas = new ArrayList<DisciplinaCursada>();
-        File arqAluno = new File("Inputs/exemplo_trabalho_TAP_historico.csv");
+        File arqAluno = new File("Inputs/" + nomeArq);
 
         try
         {

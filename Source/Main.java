@@ -1,13 +1,22 @@
+import java.util.ArrayList;
+
 import MVC.Model.Aluno.Aluno;
+import MVC.Model.Disciplina.Disciplina;
 import MVC.Model.Leitor.LeitorAluno;
+import MVC.Model.Leitor.LeitorDisciplina;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Aluno al = new Aluno();
-        System.out.println("Hello!");
-        al = LeitorAluno.leAluno("exemplo_trabalho_TAP_historico.csv");
-        al.printAluno();
+        //Aluno al = new Aluno();
+        //System.out.println("Hello!");
+        //al = LeitorAluno.leAluno("TAP_historico.csv");
+        //al.printAluno();
+
+        //ArrayList<Disciplina> disp = new ArrayList<Disciplina>();
+        //disp = LeitorDisciplina.leDisciplinas("Disciplina_2019.csv");
+        //for(Disciplina d : disp)
+            //d.printDisc();
     }    
 }

@@ -12,7 +12,7 @@ public class LeitorDisciplina
     static public ArrayList<Disciplina> leDisciplinas(String nomeArq)
     {
         ArrayList<Disciplina> listDisciplinas = new ArrayList<Disciplina>();
-        File arqDisciplinas = new File(nomeArq);
+        File arqDisciplinas = new File("Inputs/" + nomeArq);
 
         try
         {
