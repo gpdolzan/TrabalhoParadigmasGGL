@@ -11,6 +11,7 @@ public class Aluno
     private int reprovTotal;
     private int reprovNota;
     private int reprovFalta;
+    private int periodoAtual;
     private ArrayList<DisciplinaCursada> histEscolar;
 
     /* Constructor */
@@ -23,6 +24,7 @@ public class Aluno
     public int getReprovTotal() {return reprovTotal;}
     public int getReprovNota() {return reprovNota;}
     public int getReprovFalta() {return reprovFalta;}
+    public int getPeriodoAtual() {return periodoAtual;}
     public ArrayList<DisciplinaCursada> getHistEscolar() {return histEscolar;}
 
     public void setMatrAluno(String matrAluno) {this.matrAluno = matrAluno;}
@@ -31,6 +33,7 @@ public class Aluno
     public void setReprovTotal(int reprovTotal) {this.reprovTotal = reprovTotal;}
     public void setReprovNota(int reprovNota) {this.reprovNota = reprovNota;}
     public void setReprovFalta(int reprovFalta) {this.reprovFalta = reprovFalta;}
+    public void setPeriodoAtual(int periodoAtual) {this.periodoAtual = periodoAtual;}
     public void setHistEscolar(ArrayList<DisciplinaCursada> histEscolar) {this.histEscolar = histEscolar;}
 
     public void printAluno()
@@ -38,13 +41,13 @@ public class Aluno
         System.out.println("---------------------------");
         System.out.println("codCurso = " + matrAluno);
         System.out.println("numVer = " + nomePessoa);
-        System.out.println("numVer = " + percentAprov);
-        System.out.println("numVer = " + reprovTotal);
-        System.out.println("numVer = " + reprovNota);
-        System.out.println("numVer = " + reprovFalta);
-        for(DisciplinaCursada x : histEscolar)
-        {
-            x.printDiscCursada();
-        }
+        System.out.println("porcentagem de aprovacao = " + String.format("%.02f", percentAprov * 100) + "%");
+        System.out.println("numero de reprovacoes total = " + reprovTotal);
+        System.out.println("reprovacoes por nota = " + reprovNota);
+        System.out.println("reprovacoes por falta = " + reprovFalta);
+        //for(DisciplinaCursada x : histEscolar)
+        //{
+            //x.printDiscCursada();
+        //}
     }
 }

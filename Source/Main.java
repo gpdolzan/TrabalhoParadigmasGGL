@@ -9,10 +9,10 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //Aluno al = new Aluno();
-        //System.out.println("Hello!");
-        //al = LeitorAluno.leAluno("TAP_historico.csv");
-        //al.printAluno();
+        Aluno al = new Aluno();
+        al = LeitorAluno.leAluno("TAP_historico.csv");
+        al.printAluno();
+        
 
         //ArrayList<Disciplina> disp = new ArrayList<Disciplina>();
         //disp = LeitorDisciplina.leDisciplinas("Disciplina_2019.csv");
