@@ -16,12 +16,6 @@ public class LeitorAluno
         Aluno aluno = new Aluno();
         ArrayList<DisciplinaCursada> listCursadas = new ArrayList<DisciplinaCursada>();
         File arqAluno = new File("Inputs/" + nomeArq);
-
-        Integer reprovNota = 0;
-        Integer reprovFalta = 0;
-        Integer matriculadas = 0;
-        String status;
-
         try
         {
             Scanner leitor = new Scanner(arqAluno);
@@ -56,32 +50,11 @@ public class LeitorAluno
                 discCursada.setSigla(leitor.next().substring(1));
                 leitor.useDelimiter(";");
 
-                status = discCursada.getSituacao();
-                System.out.println(status);
-                if(status.equals("Reprovado por nota"))
-                {
-                    reprovNota += 1;
-                }
-                else if(status.equals("Reprovado por Frequência"))
-                {
-                    reprovFalta += 1;
-                }
-                else if(status.equals("Matrícula"))
-                {
-                    matriculadas += 1;
-                }
-
                 listCursadas.add(discCursada); /* Adds Disciplina to arrayList*/
                 leitor.nextLine();
             }
             leitor.close();
             aluno.setHistEscolar(listCursadas);
-
-            aluno.setReprovTotal(reprovNota + reprovFalta);
-            aluno.setReprovFalta(reprovFalta);
-            aluno.setReprovNota(reprovNota);
-            aluno.setPercentAprov(calculaPercentAprov((listCursadas.size()- matriculadas), (reprovNota + reprovFalta)));
-
             return aluno;
         } 
         catch (IOException e)
@@ -93,8 +66,11 @@ public class LeitorAluno
         }
     }
 
-    static double calculaPercentAprov(Integer totalDisc, Integer totalReprov)
+    static double calculaPercentAprovTotal(Integer totalDisc, Integer totalReprov)
     {
         return ((totalDisc.doubleValue() - totalReprov.doubleValue()) / (totalDisc.doubleValue()));
     }
+
+
+
 }
