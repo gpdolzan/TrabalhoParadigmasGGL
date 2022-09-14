@@ -21,7 +21,6 @@ public class Window
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setSize(1900,1000);
 
         /* Coloca Header no centro do janela */
@@ -47,7 +46,8 @@ public class Window
         JPanel panelOfertadas = new JPanel(new BorderLayout());
         DefaultTableModel modelOfertadas = new DefaultTableModel(Tabela.getColDisponiveis(), 0){
             @Override
-            public boolean isCellEditable(int row, int column) {
+            public boolean isCellEditable(int row, int column)
+            {
                 switch(column){
                     case 3:
                     case 4:
@@ -113,5 +113,47 @@ public class Window
 
         frame.setVisible(true);
         frame.getContentPane().add(BorderLayout.CENTER, tables);
+
+        enviar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                ArrayList<String> nomesDisciplinas = new ArrayList<String>();
+                ArrayList<Integer> prioridades = new ArrayList<Integer>();
+                for (int i = 0; i < tableOfertadas.getRowCount(); i++)
+                {
+                    String nomeDisciplina = (String) tableOfertadas.getValueAt(i,0);
+                    Boolean marcado = (Boolean) tableOfertadas.getValueAt(i, 3);
+                    if(marcado)
+                    {
+                        nomesDisciplinas.add(nomeDisciplina);
+                        Integer prioridade = (Integer) tableOfertadas.getValueAt(i, 4);
+                        if(prioridade == null)
+                            prioridade = 0;
+                        prioridades.add(prioridade);
+                    }
+                }
+                if(nomesDisciplinas.size()!=0)
+                {
+                    //lista.GeraPedido(nomesDisciplinas, prioridades);
+                    JFrame confirmacao= new JFrame("Confirmacao");
+                    confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    confirmacao.setResizable(false);
+                    confirmacao.setSize(420,300);
+                    JLabel confirmado= new JLabel("Seu pedido foi gerado e se encontra no diretório 'dados'");
+                    JButton butao=new JButton("OK");
+                    confirmacao.getContentPane().add(BorderLayout.CENTER,confirmado);
+                    confirmacao.getContentPane().add(BorderLayout.SOUTH,butao);
+                    confirmacao.setLocationRelativeTo(null);
+                    confirmacao.setVisible(true);
+                    butao.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            confirmacao.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                        }          
+                     });
+                }
+            }
+        });
     }
 }
