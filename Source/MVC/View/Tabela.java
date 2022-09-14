@@ -53,12 +53,38 @@ public class Tabela
         }
     }
 
+    private static String[] getColDisponiveis()
+    {
+        String[] colDisponiveis = {"Materia Pendente", "Carga Horaria", "Periodo Ideal", "Solicitacao", "Prioridade"};
+        return colDisponiveis;
+    }
+
+    public static DefaultTableModel getDefaulTabletDisponiveis()
+    {
+        DefaultTableModel defaultTableHist = new DefaultTableModel(Tabela.getColDisponiveis(), 0)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                switch(column)
+                {
+                    case 2:
+                    case 3:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        };
+        return defaultTableHist;
+    }
+
     public static void setTamanhoDisponiveis(TableColumnModel column)
     {
         column.getColumn(0).setPreferredWidth(400);
         column.getColumn(0).setMaxWidth(400);
-        column.getColumn(1).setPreferredWidth(110);
-        column.getColumn(1).setMaxWidth(110);
+        column.getColumn(1).setPreferredWidth(145);
+        column.getColumn(1).setMaxWidth(145);
         column.getColumn(2).setPreferredWidth(135);
         column.getColumn(2).setMaxWidth(135);
         column.getColumn(3).setPreferredWidth(135);
@@ -81,7 +107,7 @@ public class Tabela
         }
     }
 
-    public static void setTamanhoRestantes(TableColumnModel column)
+    /*public static void setTamanhoRestantes(TableColumnModel column)
     {
         column.getColumn(0).setPreferredWidth(400);
         column.getColumn(0).setMaxWidth(400);
@@ -101,5 +127,5 @@ public class Tabela
             Object[] info = {nome, periodo, chTotal};
             model.addRow(info);
         }
-    }
+    }*/
 }
