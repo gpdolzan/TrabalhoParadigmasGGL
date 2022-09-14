@@ -5,6 +5,7 @@ import MVC.Model.Disciplina.Disciplina;
 import MVC.Model.Leitor.LeitorAluno;
 import MVC.Model.Leitor.LeitorDisciplina;
 import MVC.Model.Organizador.OrganizadorAluno;
+import MVC.Model.Organizador.OrganizadorDisciplina;
 import MVC.View.Window;
 
 /*import java.util.ArrayList;
@@ -39,8 +40,14 @@ public class Main
     public static void main(String[] args)
     {
         Aluno al = LeitorAluno.leAluno("TAP_historico.csv");
-        ArrayList<Disciplina> disp = LeitorDisciplina.leDisciplinas("Disciplina_2011.csv");
+        ArrayList<Disciplina> disciplinas = LeitorDisciplina.leDisciplinas("Disciplina_2011.csv");
+        ArrayList<Disciplina> disponiveis, restantes;
         OrganizadorAluno.calculaDadosAluno(al);
-        Window.printWindow(al, disp);
+        disponiveis = OrganizadorDisciplina.removeOptativas(disciplinas);
+        disponiveis = OrganizadorDisciplina.removeJaCursadas(al.getHistEscolar(), disponiveis);
+        restantes = OrganizadorDisciplina.removeOptativas(disciplinas);
+        restantes = OrganizadorDisciplina.getPreBarreira(restantes);
+        restantes = OrganizadorDisciplina.removeJaCursadas(al.getHistEscolar(), restantes);
+        Window.printWindow(al, disponiveis, restantes);
     }
 }

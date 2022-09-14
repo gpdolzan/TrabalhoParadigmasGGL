@@ -1,7 +1,11 @@
 package MVC.View;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.table.*;
 import java.util.*;
+import java.io.*;
 
 import MVC.Model.Disciplina.Disciplina;
 import MVC.Model.Disciplina.DisciplinaCursada;
@@ -53,9 +57,9 @@ public class Tabela
         }
     }
 
-    private static String[] getColDisponiveis()
+    public static String[] getColDisponiveis()
     {
-        String[] colDisponiveis = {"Materia Pendente", "Carga Horaria", "Periodo Ideal", "Solicitacao", "Prioridade"};
+        String[] colDisponiveis = {"Materia Pendente", "Periodo Ideal", "Carga Horaria", "Solicitacao", "Prioridade"};
         return colDisponiveis;
     }
 
@@ -68,8 +72,8 @@ public class Tabela
             {
                 switch(column)
                 {
-                    case 2:
-                    case 3:
+                    case 4:
+                    case 5:
                         return true;
                     default:
                         return false;
@@ -100,21 +104,25 @@ public class Tabela
             String nome = disc.getNomeDisciplina();
             String chTotal = disc.getCHTotal();
             String periodo = disc.getPeriodoIdeal();
-            Boolean pedido = false;
-            int prioridade = 0;
-            Object[] info = {nome, periodo, chTotal, pedido, prioridade};
+            Object[] info = {nome, periodo, chTotal, Boolean.FALSE, 0};
             model.addRow(info);
         }
     }
 
-    /*public static void setTamanhoRestantes(TableColumnModel column)
+    public static String[] getColRestante()
     {
-        column.getColumn(0).setPreferredWidth(400);
-        column.getColumn(0).setMaxWidth(400);
-        column.getColumn(1).setPreferredWidth(245);
-        column.getColumn(1).setMaxWidth(245);
-        column.getColumn(3).setPreferredWidth(270);
-        column.getColumn(3).setMaxWidth(270);
+        String[] colRestante = {"Materia Pendente", "Periodo Ideal", "Carga Horaria"};
+        return colRestante;
+    }
+
+    public static void setTamanhoRestantes(TableColumnModel column)
+    {
+        column.getColumn(0).setPreferredWidth(410);
+        column.getColumn(0).setMaxWidth(410);
+        column.getColumn(1).setPreferredWidth(270);
+        column.getColumn(1).setMaxWidth(270);
+        column.getColumn(2).setPreferredWidth(270);
+        column.getColumn(2).setMaxWidth(270);
     }
 
     public static void geraRestantes(ArrayList<Disciplina> discs, DefaultTableModel model)
@@ -127,5 +135,5 @@ public class Tabela
             Object[] info = {nome, periodo, chTotal};
             model.addRow(info);
         }
-    }*/
+    }
 }
