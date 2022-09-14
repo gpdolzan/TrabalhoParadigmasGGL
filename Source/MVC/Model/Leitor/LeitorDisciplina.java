@@ -8,6 +8,36 @@ import MVC.Model.Disciplina.Disciplina;
 
 public class LeitorDisciplina
 {
+    static private Boolean jaExiste(Disciplina disp, ArrayList<Disciplina> disps)
+    {
+        for(Disciplina disc : disps)
+        {
+            if(disc.getNomeDisciplina().equals(disp.getNomeDisciplina()))
+                return true;
+        }
+        return false;
+    }
+
+    static private ArrayList<Disciplina> ajustaCH(Disciplina disp, ArrayList<Disciplina> disps)
+    {
+        ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+        for(Disciplina disc : disps)
+        {
+            if(disc.getNomeDisciplina().equals(disp.getNomeDisciplina()))
+            {
+                Integer ajustadaCH = Integer.parseInt(disp.getNumHoras());
+                ajustadaCH += Integer.parseInt(disc.getNumHoras());
+                disc.setNumHoras(ajustadaCH.toString());
+                disciplinas.add(disc);
+            }
+            else
+            {
+                disciplinas.add(disc);
+            }
+        }
+        return disciplinas;
+    }
+
     /* Lê arquivo CSV contendo todas as Disciplinas e armazena em uma arrayList */
     static public ArrayList<Disciplina> leDisciplinas(String nomeArq)
     {
@@ -36,13 +66,20 @@ public class LeitorDisciplina
                 disc.setPeriodoIdeal(leitor.next());
                 disc.setNumHoras(leitor.next());
                 disc.setTipoDisciplina(leitor.next());
-                disc.setCHTotal(leitor.next());
+                disc.setDescSituacao(leitor.next());
 
                 leitor.useDelimiter("\n");
-                disc.setDescSituacao(leitor.next().substring(1));
+                disc.setCHTotal(leitor.next().substring(1));
                 leitor.useDelimiter(";");
 
-                listDisciplinas.add(disc); /* Adds Disciplina to arrayList*/
+                if(jaExiste(disc, listDisciplinas) == true)
+                {
+                    listDisciplinas = ajustaCH(disc, listDisciplinas);
+                }
+                else
+                {
+                    listDisciplinas.add(disc); /* Adds Disciplina to arrayList*/
+                }
                 leitor.nextLine();
             }
             leitor.close();

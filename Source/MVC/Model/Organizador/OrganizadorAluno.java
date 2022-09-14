@@ -3,20 +3,11 @@ package MVC.Model.Organizador;
 import java.util.ArrayList;
 
 import MVC.Model.Aluno.Aluno;
-import MVC.Model.Leitor.LeitorAluno;
-import MVC.Model.Disciplina.Disciplina;
 import MVC.Model.Disciplina.DisciplinaCursada;
 
 public class OrganizadorAluno
 {
-    Aluno aluno;
-    ArrayList<Disciplina> disciplinas;
-
     OrganizadorAluno(){}
-    OrganizadorAluno(String fileALuno)
-    {
-        aluno = LeitorAluno.leAluno(fileALuno);
-    }
 
     static ArrayList<DisciplinaCursada> removeMatriculadas(ArrayList<DisciplinaCursada> discs)
     {
@@ -27,6 +18,17 @@ public class OrganizadorAluno
                 semMatriculas.add(disc);
         }
         return semMatriculas;
+    }
+
+    public static ArrayList<DisciplinaCursada> getMatriculadas(ArrayList<DisciplinaCursada> discs)
+    {
+        ArrayList<DisciplinaCursada> matriculadas = new ArrayList<DisciplinaCursada>();
+        for(DisciplinaCursada disc : discs)
+        {
+            if(disc.getSituacao().equals("Matrícula") == true)
+            matriculadas.add(disc);
+        }
+        return matriculadas;
     }
 
     static Integer getUltimoAno(ArrayList<DisciplinaCursada> discs)
