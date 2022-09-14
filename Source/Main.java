@@ -1,4 +1,9 @@
-import java.util.ArrayList;
+import MVC.Model.Aluno.Aluno;
+import MVC.Model.Leitor.LeitorAluno;
+import MVC.Model.Organizador.OrganizadorAluno;
+import MVC.View.Window;
+
+/*import java.util.ArrayList;
 
 import MVC.Model.Aluno.*;
 import MVC.Model.Disciplina.*;
@@ -22,4 +27,15 @@ public class Main
         for(Disciplina d : naoCursadas)
             d.printDisc();
     }    
+}*/
+
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Aluno al = LeitorAluno.leAluno("TAP_historico.csv");
+        OrganizadorAluno.calculaDadosAluno(al);
+        Window.printWindow(al);
+    }
 }

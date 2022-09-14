@@ -123,7 +123,7 @@ public class OrganizadorAluno
 
         ira = somatorio.doubleValue() / chIRA.doubleValue();
 
-        return ira;
+        return (ira / 100);
     }
 
     public static Aluno calculaDadosAluno(Aluno aluno)

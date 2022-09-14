@@ -46,6 +46,11 @@ public class LeitorAluno
                 discCursada.setDescrEstru(leitor.next());
                 discCursada.setFrequencia(leitor.next());
 
+                if(discCursada.getMediaFinal().equals("9999"))
+                {
+                    discCursada.setMediaFinal("Indisponível");
+                }
+
                 leitor.useDelimiter("\n");
                 discCursada.setSigla(leitor.next().substring(1));
                 leitor.useDelimiter(";");
@@ -70,7 +75,4 @@ public class LeitorAluno
     {
         return ((totalDisc.doubleValue() - totalReprov.doubleValue()) / (totalDisc.doubleValue()));
     }
-
-
-
 }

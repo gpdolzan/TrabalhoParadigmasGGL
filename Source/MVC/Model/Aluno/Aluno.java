@@ -7,9 +7,9 @@ public class Aluno
 {
     private String matrAluno;
     private String nomePessoa;
-    private double percentAprovTotal;
-    private double percentAprovAtual;
-    private double ira;
+    private Double percentAprovTotal;
+    private Double percentAprovAtual;
+    private Double ira;
     private int reprovTotal;
     private int reprovNotaTotal;
     private int reprovFaltaTotal;
@@ -25,9 +25,9 @@ public class Aluno
     /* Get and Set */
     public String getMatrAluno() {return matrAluno;}
     public String getNomePessoa() {return nomePessoa;}
-    public double getPercentAprovTotal() {return percentAprovTotal;}
-    public double getPercentAprovAtual() {return percentAprovAtual;}
-    public double getIra() {return ira;}
+    public Double getPercentAprovTotal() {return percentAprovTotal;}
+    public Double getPercentAprovAtual() {return percentAprovAtual;}
+    public Double getIra() {return ira;}
     public int getReprovTotal() {return reprovTotal;}
     public int getReprovNotaTotal() {return reprovNotaTotal;}
     public int getReprovFaltaTotal() {return reprovFaltaTotal;}
@@ -39,9 +39,9 @@ public class Aluno
 
     public void setMatrAluno(String matrAluno) {this.matrAluno = matrAluno;}
     public void setNomePessoa(String nomePessoa) {this.nomePessoa = nomePessoa;}
-    public void setPercentAprovTotal(double percentAprovTotal) {this.percentAprovTotal = percentAprovTotal;}
-    public void setPercentAprovAtual(double percentAprovAtual) {this.percentAprovAtual = percentAprovAtual;}
-    public void setIra(double ira) {this.ira = ira;}
+    public void setPercentAprovTotal(Double percentAprovTotal) {this.percentAprovTotal = percentAprovTotal;}
+    public void setPercentAprovAtual(Double percentAprovAtual) {this.percentAprovAtual = percentAprovAtual;}
+    public void setIra(Double ira) {this.ira = ira;}
     public void setReprovTotal(int reprovTotal) {this.reprovTotal = reprovTotal;}
     public void setReprovNotaTotal(int reprovNotaTotal) {this.reprovNotaTotal = reprovNotaTotal;}
     public void setReprovFaltaTotal(int reprovFaltaTotal) {this.reprovFaltaTotal = reprovFaltaTotal;}
