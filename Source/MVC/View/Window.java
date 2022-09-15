@@ -5,16 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.util.*;
-import java.io.*;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import MVC.Model.Aluno.Aluno;
-import MVC.Model.Disciplina.Disciplina;
+import MVC.Controller.Controller;
 
 public class Window
 {
-    public static void printWindow(Aluno al, ArrayList<Disciplina> disponiveis, ArrayList<Disciplina> restantes)
+    public static void printWindow(Controller ctrl)
     {
         DecimalFormat df = new DecimalFormat("#.####");
         df.setRoundingMode(RoundingMode.FLOOR);
@@ -24,10 +22,11 @@ public class Window
         frame.setSize(1900,1000);
 
         /* Coloca Header no centro do janela */
-        JLabel header = new JLabel("<html>Aluno: " + al.getNomePessoa() + "<br/>GRR: "
-            + al.getMatrAluno() + "<br/>Aprovacao Total: " + df.format((al.getPercentAprovTotal()*100)) + "%" + 
-            "<br/>Aprovacao Atual: " + df.format((al.getPercentAprovAtual()*100)) + "%" + 
-            "<br/>IRA: " + df.format(al.getIra()) + "<html>");
+        JLabel header = new JLabel("<html>Aluno: " + ctrl.getAluno().getNomePessoa() + "<br/>GRR: "
+            + ctrl.getAluno().getMatrAluno() + "<br/>Aprovacao Total: " + df.format((ctrl.getAluno().getPercentAprovTotal()*100)) + "%" + 
+            "<br/>Aprovacao Ultimo Periodo: " + df.format((ctrl.getAluno().getPercentAprovAtual()*100)) + "%" + 
+            "<br/>Reprovacoes por Frequencia no Ultimo Periodo: " + ctrl.getAluno().getReprovFaltaAtual() +
+            "<br/>IRA: " + df.format(ctrl.getAluno().getIra()) + "<html>");
         frame.getContentPane().add(BorderLayout.NORTH, header);
 
         JPanel tables = new JPanel(new BorderLayout());
@@ -37,7 +36,7 @@ public class Window
         JTable tHist = new JTable(defaultTableHist);
         TableColumnModel columnHist = tHist.getColumnModel();
         Tabela.setTamanhoColunaHist(columnHist);
-        Tabela.geraColunaHist(al.getHistEscolar(), defaultTableHist);
+        Tabela.geraColunaHist(ctrl.getAluno().getHistEscolar(), defaultTableHist);
         JScrollPane scrollPaneHistorico = new JScrollPane(tHist, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tables.add(scrollPaneHistorico,BorderLayout.CENTER);
 
@@ -79,7 +78,7 @@ public class Window
         
         TableColumnModel columnModelOfertadas = tableOfertadas.getColumnModel();
         Tabela.setTamanhoDisponiveis(columnModelOfertadas);
-        Tabela.geraColunaDisponiveis(disponiveis, modelOfertadas);
+        Tabela.geraColunaDisponiveis(ctrl.getDiscDisponiveis(), modelOfertadas);
         
         JScrollPane scrollPaneOfertadas = new JScrollPane(tableOfertadas,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JButton enviar = new JButton("Solicitar");
@@ -103,7 +102,7 @@ public class Window
         JTable tableBarreira = new JTable(modelBarreira);
         TableColumnModel columnModelBarreira = tableBarreira.getColumnModel();
         Tabela.setTamanhoRestantes(columnModelBarreira);
-        Tabela.geraRestantes(restantes, modelBarreira);
+        Tabela.geraRestantes(ctrl.getDiscRestantesBarreira(), modelBarreira);
         JPanel panelRestantes = new JPanel(new BorderLayout());
         JScrollPane scrollPaneBarreiras = new JScrollPane(tableBarreira,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPaneBarreiras.setPreferredSize(new Dimension(475,500));
@@ -136,7 +135,7 @@ public class Window
                 }
                 if(nomesDisciplinas.size()!=0)
                 {
-                    //lista.GeraPedido(nomesDisciplinas, prioridades);
+                    //lista.GeraPedido(nomesDisciplinas, prioridades); // Envia sinal para controlador
                     JFrame confirmacao= new JFrame("Confirmacao");
                     confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     confirmacao.setResizable(false);

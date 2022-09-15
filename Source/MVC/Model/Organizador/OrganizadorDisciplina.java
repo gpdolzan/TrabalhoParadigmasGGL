@@ -3,7 +3,6 @@ package MVC.Model.Organizador;
 import java.util.ArrayList;
 
 import MVC.Model.Disciplina.Disciplina;
-import MVC.Model.Leitor.LeitorDisciplina;
 import MVC.Model.Disciplina.DisciplinaCursada;
 
 public class OrganizadorDisciplina
