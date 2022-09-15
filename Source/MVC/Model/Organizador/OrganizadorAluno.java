@@ -8,7 +8,6 @@ import MVC.Model.Disciplina.DisciplinaCursada;
 public class OrganizadorAluno
 {
     OrganizadorAluno(){}
-
     static ArrayList<DisciplinaCursada> removeMatriculadas(ArrayList<DisciplinaCursada> discs)
     {
         ArrayList<DisciplinaCursada> semMatriculas = new ArrayList<DisciplinaCursada>();
@@ -18,6 +17,17 @@ public class OrganizadorAluno
                 semMatriculas.add(disc);
         }
         return semMatriculas;
+    }
+
+    public static ArrayList<DisciplinaCursada> getAprovadas(ArrayList<DisciplinaCursada> discs)
+    {
+        ArrayList<DisciplinaCursada> matriculadas = new ArrayList<DisciplinaCursada>();
+        for(DisciplinaCursada disc : discs)
+        {
+            if(disc.getSituacao().equals("Aprovado") == true)
+            matriculadas.add(disc);
+        }
+        return matriculadas;
     }
 
     public static ArrayList<DisciplinaCursada> getMatriculadas(ArrayList<DisciplinaCursada> discs)
@@ -126,6 +136,31 @@ public class OrganizadorAluno
         return (ira / 100);
     }
 
+    private static void ajustaDesempenho(Aluno aluno)
+    {
+        if(aluno.getIra() >= 0.8)
+            aluno.setDesempenho("Excelente");
+        else if(aluno.getPercentAprovAtual() > (2d / 3d))
+            aluno.setDesempenho("Bom");
+        else if(aluno.getPercentAprovAtual() >= (1d / 2d) || aluno.getPercentAprovAtual() == (2d / 3d))
+            aluno.setDesempenho("Medio");
+        else if(aluno.getPercentAprovAtual() < (1d / 2d))
+            aluno.setDesempenho("Ruim");
+        
+    }
+
+    private static void ajustaSugestoes(Aluno aluno)
+    {
+        if(aluno.getDesempenho().equals("Excelente"))
+            aluno.setSugerido(8);
+        else if(aluno.getDesempenho().equals("Bom"))
+            aluno.setSugerido(5);
+        else if(aluno.getDesempenho().equals("Medio"))
+            aluno.setSugerido(4);
+        else if(aluno.getDesempenho().equals("Ruim"))
+            aluno.setSugerido(3);
+    }
+
     public static Aluno calculaDadosAluno(Aluno aluno)
     {
         ArrayList<DisciplinaCursada> hist = removeMatriculadas(aluno.getHistEscolar());
@@ -149,7 +184,8 @@ public class OrganizadorAluno
         aluno.setPercentAprovAtual(percentAprovAtual);
 
         aluno.setIra(calculaIRA(hist));
-
+        OrganizadorAluno.ajustaDesempenho(aluno);
+        OrganizadorAluno.ajustaSugestoes(aluno);
         return aluno;
     }
 }

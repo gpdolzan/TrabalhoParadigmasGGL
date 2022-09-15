@@ -17,6 +17,8 @@ public class Aluno
     private int reprovNotaAtual;
     private int reprovFaltaAtual;
     private int periodoAtual;
+    private String desempenho;
+    private int sugerido;
     private ArrayList<DisciplinaCursada> histEscolar;
 
     /* Constructor */
@@ -35,6 +37,8 @@ public class Aluno
     public int getReprovNotaAtual() {return reprovNotaAtual;}
     public int getReprovFaltaAtual() {return reprovFaltaAtual;}
     public int getPeriodoAtual() {return periodoAtual;}
+    public String getDesempenho() {return desempenho;}
+    public int getSugerido() {return sugerido;}
     public ArrayList<DisciplinaCursada> getHistEscolar() {return histEscolar;}
 
     public void setMatrAluno(String matrAluno) {this.matrAluno = matrAluno;}
@@ -49,6 +53,8 @@ public class Aluno
     public void setReprovNotaAtual(int reprovNotaAtual) {this.reprovNotaAtual = reprovNotaAtual;}
     public void setReprovFaltaAtual(int reprovFaltaAtual) {this.reprovFaltaAtual = reprovFaltaAtual;}
     public void setPeriodoAtual(int periodoAtual) {this.periodoAtual = periodoAtual;}
+    public void setDesempenho(String desempenho) {this.desempenho = desempenho;}
+    public void setSugerido(int sugerido) {this.sugerido = sugerido;}
     public void setHistEscolar(ArrayList<DisciplinaCursada> histEscolar) {this.histEscolar = histEscolar;}
 
     public void printAluno()

@@ -1,5 +1,6 @@
 package MVC.View;
 
+import javax.swing.JTable;
 import javax.swing.table.*;
 import java.util.*;
 
@@ -66,17 +67,41 @@ public class Tabela
             @Override
             public boolean isCellEditable(int row, int column)
             {
-                switch(column)
-                {
+                switch(column){
+                    case 3:
                     case 4:
-                    case 5:
                         return true;
                     default:
-                        return false;
+                        return false;    
                 }
             }
         };
         return defaultTableHist;
+    }
+
+    public static JTable getJTableDisponiveis(DefaultTableModel defaultDisponiveis)
+    {
+        JTable tDisponiveis = new JTable(defaultDisponiveis)
+        {
+            @Override
+            public Class getColumnClass(int column){
+                switch(column){
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return Boolean.class;
+                    case 4:
+                        return Integer.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        return tDisponiveis;
     }
 
     public static void setTamanhoDisponiveis(TableColumnModel column)
@@ -109,6 +134,19 @@ public class Tabela
     {
         String[] colRestante = {"Materia Pendente", "Periodo Ideal", "Carga Horaria"};
         return colRestante;
+    }
+
+    public static DefaultTableModel getDefaultRestantes()
+    {
+        DefaultTableModel defaultRestantes = new DefaultTableModel(Tabela.getColRestante(), 0)
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
+        return defaultRestantes;
     }
 
     public static void setTamanhoRestantes(TableColumnModel column)

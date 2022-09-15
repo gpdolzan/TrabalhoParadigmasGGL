@@ -8,6 +8,7 @@ import MVC.Model.Leitor.LeitorAluno;
 import MVC.Model.Leitor.LeitorDisciplina;
 import MVC.Model.Organizador.OrganizadorAluno;
 import MVC.Model.Organizador.OrganizadorDisciplina;
+import MVC.Model.RequestHandler.RequestHandler;
 import MVC.View.Window;
 
 public class Controller
@@ -51,4 +52,10 @@ public class Controller
         Window.printWindow(controllerSingleton);
     }
 
+    public boolean checkSolicitacao(Integer numSolicitadas)
+    {
+        if(numSolicitadas > aluno.getSugerido())
+            return false;
+        return true;
+    }
 }
