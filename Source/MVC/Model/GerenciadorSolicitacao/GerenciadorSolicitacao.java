@@ -1,10 +1,7 @@
 package MVC.Model.GerenciadorSolicitacao;
 
-import java.io.File;  
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.text.AbstractDocument.BranchElement;
 
 import java.io.FileWriter;
 
@@ -15,27 +12,19 @@ import java.text.SimpleDateFormat;
 
 public class GerenciadorSolicitacao
 {
-    public static String CriaSaida() {
+    public static String CriaSaida()
+    {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String date = new SimpleDateFormat("dd_MM_yyyy HH:mm").format(timestamp.getTime());
-        try {
-            File Objeto = new File ("Solicitacao" + date + ".txt");
-            if (Objeto.createNewFile()){
-                System.out.println("Arquivo criado: " + Objeto.getName());
-            } else {
-                System.out.println("Arquivo já existe");
-            }
-        } catch (IOException e) {
-            System.out.println("Erro ao gerar arquivo");
-            e.printStackTrace();
-        }
-        return ("Solicitacao" + date + ".txt");
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(timestamp.getTime());
+        String filename = "Solicitacao_" + timeStamp + ".txt";
+        System.out.print(filename);
+        return filename;
 
     }
 
    public static Boolean EscreveArquivo(ArrayList<String> disciplinaSolicitada, ArrayList<Integer> prioridade, String nomeSaida, Aluno aluno, ArrayList<Disciplina> barreiraRest ){
         try{
-            FileWriter escritor = new FileWriter(nomeSaida + ".txt");
+            FileWriter escritor = new FileWriter(nomeSaida);
             //Cabeçário
             escritor.write("PEDIDO DE QUEBRA DE REQUISITOS / BARREIRA \n");
             escritor.write("Este formulário serve para encaminhamento de pedido ao colegiado do curso para a quebra de requisitos da barreira dos três períodos iniciais, conforme previsto na definição do currículo do curso.Deve ser entregue na secretaria do curso. \n");

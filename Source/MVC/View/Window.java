@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import javax.swing.text.Position;
 
 import java.util.*;
 import java.math.RoundingMode;
@@ -106,7 +105,8 @@ public class Window
                         confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         confirmacao.setResizable(false);
                         confirmacao.setSize(400,300);
-                        JLabel msg = new JLabel("Solicitacao salva na pasta ./Outputs");
+                        JLabel msg = new JLabel("<html>Solicitacao salva no arquivo:<br/>"
+                        + nomeSaida + "<html/>");
                         JButton bt = new JButton("OK");
                         confirmacao.getContentPane().add(BorderLayout.CENTER, msg);
                         confirmacao.getContentPane().add(BorderLayout.SOUTH, bt);
@@ -152,12 +152,12 @@ public class Window
                                 String nomeSaida = GerenciadorSolicitacao.CriaSaida();
                                 GerenciadorSolicitacao.EscreveArquivo(nomesDisciplinas, prioridades, nomeSaida, ctrl.getAluno(), ctrl.getDiscRestantesBarreira());
 
-
                                 JFrame confirmacao = new JFrame("Confirmacao");
                                 confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                                 confirmacao.setResizable(false);
                                 confirmacao.setSize(400,300);
-                                JLabel msg = new JLabel("Solicitacao salva na pasta " + nomeSaida);
+                                JLabel msg = new JLabel("<html>Solicitacao salva no arquivo:<br/>"
+                                + nomeSaida + "<html/>");
                                 JButton bt = new JButton("OK");
                                 confirmacao.getContentPane().add(BorderLayout.CENTER, msg);
                                 confirmacao.getContentPane().add(BorderLayout.SOUTH, bt);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import MVC.Model.Aluno.Aluno;
 import MVC.Model.Disciplina.Disciplina;
-import MVC.Model.GerenciadorSolicitacao.GerenciadorSolicitacao;
 import MVC.Model.Leitor.LeitorAluno;
 import MVC.Model.Leitor.LeitorDisciplina;
 import MVC.Model.Organizador.OrganizadorAluno;
