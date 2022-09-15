@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import MVC.Model.Aluno.Aluno;
 import MVC.Model.Disciplina.Disciplina;
+import MVC.Model.GerenciadorSolicitacao.GerenciadorSolicitacao;
 import MVC.Model.Leitor.LeitorAluno;
 import MVC.Model.Leitor.LeitorDisciplina;
 import MVC.Model.Organizador.OrganizadorAluno;
 import MVC.Model.Organizador.OrganizadorDisciplina;
-import MVC.Model.RequestHandler.RequestHandler;
 import MVC.View.Window;
 
 public class Controller

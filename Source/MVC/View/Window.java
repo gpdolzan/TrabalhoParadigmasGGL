@@ -11,6 +11,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import MVC.Controller.Controller;
+import MVC.Model.GerenciadorSolicitacao.GerenciadorSolicitacao;
 
 public class Window
 {
@@ -99,6 +100,8 @@ public class Window
                 {
                     if(ctrl.checkSolicitacao(nomesDisciplinas.size()) == true)
                     {
+                        String nomeSaida = GerenciadorSolicitacao.CriaSaida();
+                        GerenciadorSolicitacao.EscreveArquivo(nomesDisciplinas, prioridades, nomeSaida, ctrl.getAluno(), ctrl.getDiscRestantesBarreira());
                         JFrame confirmacao = new JFrame("Confirmacao");
                         confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         confirmacao.setResizable(false);
@@ -146,11 +149,15 @@ public class Window
                             {
                                 confirmacao.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 
+                                String nomeSaida = GerenciadorSolicitacao.CriaSaida();
+                                GerenciadorSolicitacao.EscreveArquivo(nomesDisciplinas, prioridades, nomeSaida, ctrl.getAluno(), ctrl.getDiscRestantesBarreira());
+
+
                                 JFrame confirmacao = new JFrame("Confirmacao");
                                 confirmacao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                                 confirmacao.setResizable(false);
                                 confirmacao.setSize(400,300);
-                                JLabel msg = new JLabel("Solicitacao salva na pasta ./Outputs");
+                                JLabel msg = new JLabel("Solicitacao salva na pasta " + nomeSaida);
                                 JButton bt = new JButton("OK");
                                 confirmacao.getContentPane().add(BorderLayout.CENTER, msg);
                                 confirmacao.getContentPane().add(BorderLayout.SOUTH, bt);
